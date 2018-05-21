@@ -1,0 +1,33 @@
+<h1>候選人列表</h1>
+<!-- link_to 連結 -->
+<%= link_to "新增候選人", new_candidate_path %>
+
+<p><%= @number %></p>
+<div class="list">
+	<div class="row">
+		<div class="col">編號</div>
+		<div class="col">票數</div>
+		<div class="col"></div>
+		<div class="col">姓名</div>
+		<div class="col">年齡</div>
+		<div class="col">性別</div>
+		<div class="col">政黨</div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div> 
+	<% @candidates.each do |candidate| %>
+	<div class="row">
+		<div class="col"><%= candidate.id %></div>
+		<div class="col"><%= candidate.vote.to_i %></div>
+		<div class="col"><%= link_to "投票",vote_candidate_path(candidate.id), method: "put", data: { confirm: "確定投票?" } %></div>
+		<div class="col"><%= link_to candidate.name, candidate_path(candidate.id) %></div>
+		<div class="col"><%= candidate.age %></div>
+		<div class="col"><%= candidate.gender %></div>
+		<div class="col"><%= candidate.party %></div>
+		<div class="col"><%= link_to "編輯", edit_candidate_path(candidate.id) %></div>
+		<div class="col">
+			<%= link_to "刪除", candidate_path(candidate.id), method: :delete, data: { confirm: "確定刪除?" } %>
+			</div>
+	</div> 
+	<% end %>
+</div> <!-- /list -->

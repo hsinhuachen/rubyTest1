@@ -1,0 +1,31 @@
+<!-- 檔名必須要有底線, _aaa.html.erb -->
+<%= link_to "返回", candidates_path  %>
+
+<% if candidate.errors.any? %>
+	<ul class="errorMsg">
+		<% candidate.errors.full_messages.each do |errorMsg| %>
+		<li><%= errorMsg %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<div id="form">
+	<%= form_for(candidate) do |f| %>
+	<div class="formRow">
+		<label for="candidate_name">姓名:</label> <%= f.text_field :name %>
+	</div>
+	<div class="formRow">
+		<label for="candidate_age">年齡:</label> <%= f.text_field :age %>
+	</div>
+	<div class="formRow">
+		<label for="candidate_gender">性別:</label> <%= f.text_field :gender %>
+	</div>
+	<div class="formRow">
+		<label for="candidate_party">黨派:</label> <%= f.text_field :party %>
+	</div>
+	<div class="formRow">
+		<label for="candidate_party">描述:</label> <%= f.text_area :msg %>
+	</div>
+	<%= f.submit "Create" %>
+	<% end %>
+</div> <!-- /form -->
